@@ -17,8 +17,8 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "devStart": "nodemon server.js",
+    "start": "nodemon index.js",
+    "devStart": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
