@@ -5,8 +5,10 @@ import { MongoClient } from 'mongodb';
 import env from 'dotenv';
 env.config();
 
-const dbName = process.env.dbName;
-const url = process.env.URL;
+// const dbName = process.env.dbName;
+// const url = process.env.URL;
+const dbName = 'Todo-App'
+const url = 'mongodb+srv://raguraj9843:tVqtOJvGP5yo2bLv@todo-app-mern.zdbbuag.mongodb.net/?retryWrites=true&w=majority'
 
 let db;
 
