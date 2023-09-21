@@ -6,7 +6,7 @@ import env from 'dotenv';
 env.config();
 
 const dbName = process.env.dbName;
-const url = process.env.url;
+const url = process.env.URL;
 
 let db;
 
