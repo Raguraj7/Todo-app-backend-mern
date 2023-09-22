@@ -21,9 +21,10 @@ export const newDbCluster = async () => {
     const client = new MongoClient(url);
     const connect = await client.connect();
     db = connect.db(dbName);
+    console.log('db connected succefully');
     return db;
   } catch (error) {
-    console.log('mongodb connnection error', error);
+    console.log('mongodb connnection error', error.message);
   }
 };
 // MongoClient.connect(url)
