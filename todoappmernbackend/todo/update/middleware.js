@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { newDbCluster } from '../../database/DBManager.js';
+import Joi from 'joi';
 
 const Db = await newDbCluster();
 const UserNamevalidator = Joi.string()
