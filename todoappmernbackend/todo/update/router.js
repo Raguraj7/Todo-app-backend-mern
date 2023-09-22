@@ -1,7 +1,7 @@
 import express from 'express';
-import { Updatelist } from './middleware.js';
+import { Updatelist, updateValidator } from './middleware.js';
 const router = express.Router();
 
-router.use(Updatelist);
+router.use(updateValidator,Updatelist);
 
 export default router;
