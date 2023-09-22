@@ -6,7 +6,7 @@ const Db = await newDbCluster();
 export const deleteOneTODO = async (req, res) => {
   const { _id } = req.query;
   console.log('query', req.query);
-  const deletedata = await db
+  const deletedata = await Db
     .collection('Todo-list')
     .deleteOne({ _id: new ObjectId(_id) });
   console.log('deletedata', deletedata);
