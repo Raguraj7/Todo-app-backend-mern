@@ -41,8 +41,8 @@ const UserlistValidator = Joi.object({
   categeory: Categeoryvalidator.required(),
 });
 export const updateValidator = (req, res, next) => {
-  console.log('hiiii valid', req.body);
-  const { error } = UserlistValidator.validate(req.body, { abortEarly: false });
+  const {UserName, place, Age, categeory}=req.body
+  const { error } = UserlistValidator.validate({UserName, place, Age, categeory}, { abortEarly: false });
 
   if (error && error.details?.length > 0) {
     res.status(400).json({
