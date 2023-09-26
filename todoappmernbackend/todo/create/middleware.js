@@ -1,51 +1,46 @@
 import Joi from 'joi';
-// import { Db } from 'mongodb';
-// import { newDb } from '../../mongodb.js';
 import { newDbCluster } from '../../database/DBManager.js';
-
 const Db = await newDbCluster();
-// const db = await newDb();
 
 const UserNamevalidator = Joi.string()
-  .alphanum()
-  .min(3)
-  .max(30)
-  .required()
-  .messages({
-    'string.empty': 'UserName is not allowed to empty',
-  });
-const Placevalidator = Joi.string()
-  .alphanum()
-  .min(3)
-  .max(30)
-  .required()
-  .messages({ 'string.empty': 'Place is not allowed to empty' });
-const Agevalidator = Joi.number().integer().required().messages({
-  'number.empty': 'Age is not allowed to empty',
-  'number.base': 'Age is must be a number',
-  'any.required': 'Age is required',
+.alphanum()
+.min(3)
+.max(30)
+.required()
+.messages({
+  'string.empty': 'UserName is not allowed to empty',
+});
+const TaskName = Joi.string()
+.alphanum()
+.min(3)
+.max(30)
+.required()
+.messages({ 'string.empty': 'TaskName is not allowed to empty' });
+const Description = Joi.string().alphanum().required().messages({
+  'Description.empty': 'Description is not allowed to empty',
+  'Description.base': 'Description is must be a string',
+  'any.required': 'Description is required',
 });
 const Categeoryvalidator = Joi.string()
-  .alphanum()
-  .min(4)
-  .max(30)
-  .required()
-  .messages({
-    'string.empty': ' Categeory is not allowed to empty',
-    'string.min': ' Categeory is must be minimum 4 characters to allowed',
-    'string.max':
-      ' Categeory is  must be minimum 30 only characters to allowed',
-  });
+.alphanum()
+.min(4)
+.max(30)
+.required()
+.messages({
+  'string.empty': ' Categeory is not allowed to empty',
+  'string.min': ' Categeory is must be minimum 4 characters to allowed',
+  'string.max':
+    ' Categeory is  must be minimum 30 only characters to allowed',
+});
 
 const UserlistValidator = Joi.object({
-  UserName: UserNamevalidator.required(),
-  place: Placevalidator.required(),
-  Age: Agevalidator.required(),
+  username: UserNamevalidator.required(),
+  taskname: TaskName.required(),
+  description: Description.required(),
   categeory: Categeoryvalidator.required(),
 });
 
 export const createValidator = (req, res, next) => {
-  console.log('hiiii valid', req.body);
   const { error } = UserlistValidator.validate(req.body, { abortEarly: false });
 
   if (error && error.details?.length > 0) {
@@ -60,22 +55,12 @@ export const createValidator = (req, res, next) => {
 
   return;
 };
-export const createMiddleware = async (req, res, next) => {
-  // const { categeory } = req.body;
-  // const data = await Db.collection('list').findOne(categeory);
-  // console.log(data);
-
-  next();
-  return;
-};
 export const createController = async (req, res, next) => {
-  console.log('hiiii', res.data);
-
-  const { UserName, place, Age, categeory } = req.body;
+  const { username, taskname, description, categeory } = req.body;
   const data = await Db.collection('Todo-list').insertOne({
-    UserName,
-    place,
-    Age,
+    username,
+    taskname,
+    description,
     categeory,
   });
   console.log(data);
