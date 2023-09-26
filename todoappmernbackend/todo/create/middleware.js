@@ -17,7 +17,7 @@ const TaskName = Joi.string()
 .required()
 .messages({ 'string.empty': 'TaskName is not allowed to empty' });
 const Description = Joi.string().alphanum().required().messages({
-  'Description.empty': 'Description is not allowed to empty',
+  'string.empty': 'Description is not allowed to empty',
   'Description.base': 'Description is must be a string',
   'any.required': 'Description is required',
 });
