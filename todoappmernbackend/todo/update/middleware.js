@@ -38,7 +38,6 @@ const Db = await newDbCluster();
 //       ' Categeory is  must be minimum 30 only characters to allowed',
 //   });
   const UserNamevalidator = Joi.string()
-  .alphanum()
   .min(3)
   .max(30)
   .required()
@@ -46,7 +45,6 @@ const Db = await newDbCluster();
     'string.empty': 'UserName is not allowed to empty',
   });
 const TaskName = Joi.string()
-  .alphanum()
   .min(3)
   .max(30)
   .required()
@@ -57,7 +55,6 @@ const TaskName = Joi.string()
     'any.required': 'Description is required',
   });
 const Categeoryvalidator = Joi.string()
-  .alphanum()
   .min(4)
   .max(30)
   .required()

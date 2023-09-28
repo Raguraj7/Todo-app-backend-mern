@@ -3,7 +3,6 @@ import { newDbCluster } from '../../database/DBManager.js';
 const Db = await newDbCluster();
 
 const UserNamevalidator = Joi.string()
-.alphanum()
 .min(3)
 .max(30)
 .required()
@@ -11,7 +10,6 @@ const UserNamevalidator = Joi.string()
   'string.empty': 'UserName is not allowed to empty',
 });
 const TaskName = Joi.string()
-.alphanum()
 .min(3)
 .max(30)
 .required()
@@ -22,7 +20,6 @@ const Description = Joi.string().required().messages({
   'any.required': 'Description is required',
 });
 const Categeoryvalidator = Joi.string()
-.alphanum()
 .min(4)
 .max(30)
 .required()
