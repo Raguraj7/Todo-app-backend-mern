@@ -9,7 +9,6 @@ const port = process.env.PORT || 8001;
 app.use(cors());
 app.use(express.json());
 
-console.log('hiii');
 
 app.get('/', (req, res) => {
   res.send('Express + TypeScript Server');
