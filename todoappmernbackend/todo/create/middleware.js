@@ -28,13 +28,14 @@ const Categeoryvalidator = Joi.string()
   'string.min': ' Categeory is must be minimum 4 characters to allowed',
   'string.max':
     ' Categeory is  must be minimum 30 only characters to allowed',
-});
+});const Datevalidator=Joi.date().raw().required()
 
 const UserlistValidator = Joi.object({
   username: UserNamevalidator.required(),
   taskname: TaskName.required(),
   description: Description.required(),
   categeory: Categeoryvalidator.required(),
+  date:Datevalidator.required()
 });
 
 export const createValidator = (req, res, next) => {
@@ -53,12 +54,13 @@ export const createValidator = (req, res, next) => {
   return;
 };
 export const createController = async (req, res, next) => {
-  const { username, taskname, description, categeory } = req.body;
+  const { username, taskname, description, categeory,date } = req.body;
   const data = await Db.collection('Todo-list').insertOne({
     username,
     taskname,
     description,
     categeory,
+    date
   });
   console.log(data);
   res.setHeader('Content-Type', 'application/json');

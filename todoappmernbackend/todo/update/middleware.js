@@ -64,16 +64,18 @@ const Categeoryvalidator = Joi.string()
     'string.max':
       ' Categeory is  must be minimum 30 only characters to allowed',
   });
+  const Datevalidator=Joi.date().raw().required()
 
 const UserlistValidator = Joi.object({
   username: UserNamevalidator.required(),
   taskname: TaskName.required(),
   description: Description.required(),
   categeory: Categeoryvalidator.required(),
+  date: Datevalidator.required(),
 });
 export const updateValidator = (req, res, next) => {
-  const {username, taskname, description, categeory}=req.body
-  const { error } = UserlistValidator.validate({username, taskname, description, categeory}, { abortEarly: false });
+  const {username, taskname, description, categeory,date}=req.body
+  const { error } = UserlistValidator.validate({username, taskname, description, categeory,date}, { abortEarly: false });
 
   if (error && error.details?.length > 0) {
     res.status(400).json({
@@ -89,11 +91,11 @@ export const updateValidator = (req, res, next) => {
 };
 
 export const Updatelist = async (req, res) => {
-  const { _id, username, taskname, description, categeory} = req.body;
+  const { _id, username, taskname, description, categeory,date} = req.body;
 
   const data = await Db.collection('Todo-list').updateOne(
     { _id: new ObjectId(_id) },
-    { $set: { username, taskname, description, categeory } }
+    { $set: { username, taskname, description, categeory,date } }
   );
   console.log(data);
   res.status(200).json({ status: 200, message: 'Update successfully' });
