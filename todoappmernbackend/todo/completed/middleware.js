@@ -60,22 +60,19 @@ export const completedList = async (req, res) => {
     const { username, taskname, description, categeory,date } = req.body;
     const { _id } = req.query;
    
-    const data = await Db.collection('todo-completed').insertOne({
+     await Db.collection('todo-completed').insertOne({
       username,
       taskname,
       description,
       categeory,
       date
     });
-   
-      
-    
       const deletedata = await Db
         .collection('Todo-list')
         .deleteOne({ _id: new ObjectId(_id) });
       console.log('deletedata', deletedata);
       res.status(200).json({
-        _id,
+        _id ,
         message: 'delete successfully',
       });
 
