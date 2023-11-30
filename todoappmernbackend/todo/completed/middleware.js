@@ -57,9 +57,9 @@ const Db = await newDbCluster();
 // };
 
 export const completedList = async (req, res) => {
-    const { username, taskname, description, categeory,date } = req.body;
-    const { _id } = req.query;
-   
+    const { username, taskname, description, categeory,date,_id  } = req.body;
+    
+    
      await Db.collection('todo-completed').insertOne({
       username,
       taskname,
