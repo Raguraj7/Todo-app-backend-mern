@@ -58,6 +58,7 @@ const Db = await newDbCluster();
 
 export const completedList = async (req, res) => {
     const { username, taskname, description, categeory,date } = req.body;
+    const { _id } = req.query;
    
     const data = await Db.collection('todo-completed').insertOne({
       username,
@@ -66,8 +67,16 @@ export const completedList = async (req, res) => {
       categeory,
       date
     });
+   
+      
     
-    res.setHeader('Content-Type', 'application/json');
-    // res.status(200).json({ _id: data.insertedId });
-    res.status(200).json({ data });
+      const deletedata = await Db
+        .collection('Todo-list')
+        .deleteOne({ _id: new ObjectId(_id) });
+      console.log('deletedata', deletedata);
+      res.status(200).json({
+        _id,
+        message: 'delete successfully',
+      });
+
   };
