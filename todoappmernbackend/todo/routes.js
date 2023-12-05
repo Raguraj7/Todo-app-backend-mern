@@ -10,6 +10,6 @@ router.post('/create', CreateRouter);
 router.get('/list', ListRouter);
 router.post('/update', UpdateRouter);
 router.delete('/delete', DeleteRouter);
-router.post('/completed', CompletedRouter);
+router.get('/completed', CompletedRouter);
 
 export default router;
