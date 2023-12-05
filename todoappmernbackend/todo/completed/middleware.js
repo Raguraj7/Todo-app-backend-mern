@@ -1,6 +1,4 @@
-import { ObjectId } from 'mongodb';
 import { newDbCluster } from '../../database/DBManager.js';
-import Joi from 'joi';
 
 const Db = await newDbCluster();
 //  const UserNamevalidator = Joi.string()
@@ -56,24 +54,29 @@ const Db = await newDbCluster();
 //   return;
 // };
 
-export const completedList = async (req, res) => {
-    const { username, taskname, description, categeory,date,_id  } = req.body;
+// export const completedList = async (req, res) => {
+//     const { username, taskname, description, categeory,date,_id  } = req.body;
     
     
-     await Db.collection('todo-completed').insertOne({
-      username,
-      taskname,
-      description,
-      categeory,
-      date
-    });
-      const deletedata = await Db
-        .collection('Todo-list')
-        .deleteOne({ _id: new ObjectId(_id) });
-      console.log('deletedata', deletedata);
-      res.status(200).json({
-        _id ,
-        message: 'delete successfully',
-      });
+//      await Db.collection('todo-completed').insertOne({
+//       username,
+//       taskname,
+//       description,
+//       categeory,
+//       date
+//     });
+//       const deletedata = await Db
+//         .collection('Todo-list')
+//         .deleteOne({ _id: new ObjectId(_id) });
+//       console.log('deletedata', deletedata);
+//       res.status(200).json({
+//         _id ,
+//         message: 'delete successfully',
+//       });
 
+//   };
+  export const completedList = async (req, res) => {
+    const data = await Db.collection('todo-completed').find().toArray();
+    console.log(data);
+    res.status(200).json({ data });
   };
