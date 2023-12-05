@@ -17,7 +17,6 @@ const Db = await newDbCluster();
 // };
 
 export const deleteOneTODO = async (req, res) => {
- 
   const { _id } = req.params;
   const getObject = await Db
   .collection('Todo-list')
