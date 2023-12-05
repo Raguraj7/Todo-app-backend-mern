@@ -24,6 +24,7 @@ export const deleteOneTODO = async (req, res) => {
   const deletedata = await Db
     .collection('Todo-list')
     .find({ _id: new ObjectId(_id) });
+    console.log('deletedata', deletedata);
 res.status(204).json({
       _id,
       message: 'delete successfully',deletedata
